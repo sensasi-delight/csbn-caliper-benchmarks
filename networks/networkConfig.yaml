@@ -1,0 +1,23 @@
+name: Caliper test
+version: "2.0.0"
+
+caliper:
+  blockchain: fabric
+
+channels:
+  - channelName: channel0
+    contracts:
+    - id: basic
+
+organizations:
+  - mspid: Supp2MSP
+    identities:
+      certificates:
+      - name: 'User1'
+        clientPrivateKey:
+          path: '../csbn-network/organizations/peerOrganizations/supp2.csbn.net/users/User1@supp2.csbn.net/msp/keystore/3193f512f73298c43418bc61a2caa46d5c858ef42da60449bb150595c8f71070_sk'
+        clientSignedCert:
+          path: '../csbn-network/organizations/peerOrganizations/supp2.csbn.net/users/User1@supp2.csbn.net/msp/signcerts/cert.pem'
+    connectionProfile:
+      path: '../csbn-network/organizations/peerOrganizations/supp2.csbn.net/connection-profile.yaml'
+      discover: true
