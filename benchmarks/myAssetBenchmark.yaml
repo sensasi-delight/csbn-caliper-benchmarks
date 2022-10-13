@@ -1,19 +1,124 @@
 test:
-    name: basic-contract-benchmark
-    description: test benchmark
-    workers:
-      number: 2
-    rounds:
-      - label: readAsset
-        description: Read asset benchmark
-        txDuration: 30
-        rateControl:
-          type: fixed-load
-          opts:
-            transactionLoad: 5
-            startingTps: 100
-        workload:
-          module: workload/readAsset.js
-          arguments:
-            assets: 10
-            contractId: basic
+  name: basic-contract-benchmark
+  description: test benchmark
+  workers:
+    number: 2
+  rounds:
+    ########### reach
+    # - label: reach fixed-rate
+    #   description: reach smart contract benchmark
+    #   txDuration: 30
+    #   rateControl:
+    #     type: fixed-rate
+    #     opts:
+    #       tps: 10
+    #   workload:
+    #     module: workload/reach.js
+
+    # - label: reach fixed-feedback-rate
+    #   description: reach smart contract benchmark
+    #   txDuration: 30
+    #   rateControl:
+    #     type: fixed-feedback-rate
+    #     opts:
+    #       tps: 100
+    #       transactionLoad: 100
+    #   workload:
+    #     module: workload/reach.js
+
+    # - label: reach fixed-load
+    #   description: reach smart contract benchmark
+    #   txDuration: 30
+    #   rateControl:
+    #     type: fixed-load
+    #     opts:
+    #       transactionLoad: 5
+    #       startingTps: 100
+    #   workload:
+    #     module: workload/reach.js
+
+    # - label: reach maximum-rate
+    #   description: reach smart contract benchmark
+    #   txDuration: 30
+    #   rateControl:
+    #     type: maximum-rate
+    #     opts:
+    #       tps: 100
+    #       step: 5
+    #       sampleInterval: 20
+    #       includeFailed: true
+    #   workload:
+    #     module: workload/reach.js
+
+    # - label: reach linear-rate
+    #   description: reach smart contract benchmark
+    #   txDuration: 30
+    #   rateControl:
+    #     type: linear-rate
+    #     opts:
+    #       startingTps: 25
+    #       finishingTps: 75
+    #   workload:
+    #     module: workload/reach.js
+
+
+    ########### readAsset
+    # - label: readAsset
+    #   description: Read asset benchmark
+    #   txDuration: 30
+    #   rateControl:
+    #     type: fixed-load
+    #     opts:
+    #       transactionLoad: 5
+    #       startingTps: 100
+    #   workload:
+    #     module: workload/readAsset.js
+
+
+    ########### createOrUpdateAsset
+    # - label: createOrUpdateAsset fixed-rate
+    #   description: createOrUpdateAsset benchmark
+    #   txDuration: 30
+    #   rateControl:
+    #     type: fixed-rate
+    #     opts:
+    #       tps: 10
+    #   workload:
+    #     module: workload/createOrUpdateAsset.js
+
+    # - label: createOrUpdateAsset fixed-load
+    #   description: createOrUpdateAsset benchmark
+    #   txDuration: 30
+    #   rateControl:
+    #     type: fixed-load
+    #     opts:
+    #       transactionLoad: 5
+    #       startingTps: 100
+    #   workload:
+    #     module: workload/createOrUpdateAsset.js
+
+
+    ########### readAssets
+    # - label: readAssets fixed-load
+    #   description: readAssets benchmark
+    #   txDuration: 30
+    #   rateControl:
+    #     type: fixed-load
+    #     opts:
+    #       transactionLoad: 5
+    #       startingTps: 100
+    #   workload:
+    #     module: workload/readAssets.js
+
+
+
+    ########### deleteAsset
+    - label: deleteAsset fixed-rate
+      description: deleteAsset benchmark
+      txDuration: 30
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/deleteAsset.js

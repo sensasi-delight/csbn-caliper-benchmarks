@@ -7,59 +7,41 @@ const ARGUMENTS = require('../benchmarks/arguments.json');
 class MyWorkload extends WorkloadModuleBase {
   constructor() {
     super();
+
+    this.currentId = 0;
   }
 
   async initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext) {
     await super.initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext);
-
-    for (let i = 0; i < ARGUMENTS.nAsset; i++) {
-
-      let data = { ...BATCH_SAMPLE };
-      data.id = this.workerIndex + '_' + i;
-      data.date = ARGUMENTS.date;
-
-      const keysDate = data.date.substring(2).split('-');
-
-      const keys = [ARGUMENTS.assetType, ARGUMENTS.orgName, ...keysDate, data.id];
-
-      console.log(`Worker ${this.workerIndex}: Creating asset ${keys.toString()}`);
-
-      const request = {
-        contractId: ARGUMENTS.contractId,
-        contractFunction: 'createOrUpdateAsset',
-        invokerIdentity: 'User1',
-        contractArguments: ['create', ARGUMENTS.assetType, JSON.stringify(keys), JSON.stringify(data)],
-        readOnly: false
-      };
-
-      await this.sutAdapter.sendRequests(request);
-    }
   }
 
   async submitTransaction() {
-    const keysDate = ARGUMENTS.date.substring(2).split('-');
-    const randomId = Math.floor(Math.random() * ARGUMENTS.nAsset);
-    const dataId = this.workerIndex + '_' + randomId;
+    let data = { ...BATCH_SAMPLE };
 
-    const keys = [ARGUMENTS.assetType, ARGUMENTS.orgName, ...keysDate, dataId];
+    data.id = this.workerIndex + '_' + this.currentId++;
+    data.date = ARGUMENTS.date;
+
+    const keysDate = data.date.substring(2).split('-');
+
+    const keys = [ARGUMENTS.assetType, ARGUMENTS.orgName, ...keysDate, data.id];
 
     const myArgs = {
       contractId: ARGUMENTS.contractId,
-      contractFunction: 'readAsset',
+      contractFunction: 'createOrUpdateAsset',
       invokerIdentity: 'User1',
-      contractArguments: [ARGUMENTS.assetType, JSON.stringify(keys)],
-      readOnly: true
+      contractArguments: ['create', ARGUMENTS.assetType, JSON.stringify(keys), JSON.stringify(data)],
+      readOnly: false
     };
 
     await this.sutAdapter.sendRequests(myArgs);
   }
 
   async cleanupWorkloadModule() {
-    console.log(`Worker ${this.workerIndex}: Deleting ${ARGUMENTS.nAsset} asset(s)`);
+    console.log(`Worker ${this.workerIndex}: Deleting ${this.currentId-1} asset(s)`);
 
     const sendRequests = [];
 
-    for (let i = 0; i < ARGUMENTS.nAsset; i++) {
+    for (let i = 0; i < this.currentId; i++) {
 
       const keysDate = ARGUMENTS.date.substring(2).split('-');
       const dataId = this.workerIndex + '_' + i;
@@ -78,7 +60,7 @@ class MyWorkload extends WorkloadModuleBase {
     }
 
     await Promise.all(sendRequests);
-    console.log(`Worker ${this.workerIndex}: ${ARGUMENTS.nAsset} asset(s) are deleted`);
+    console.log(`Worker ${this.workerIndex}: ${this.currentId-1} asset(s) are deleted`);
   }
 }
 

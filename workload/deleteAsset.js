@@ -12,6 +12,11 @@ class MyWorkload extends WorkloadModuleBase {
   async initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext) {
     await super.initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext);
 
+    
+    console.log(`Worker ${this.workerIndex}: Creating ${ARGUMENTS.nAsset} asset(s)`);
+
+    const sendRequests = [];
+
     for (let i = 0; i < ARGUMENTS.nAsset; i++) {
 
       let data = { ...BATCH_SAMPLE };
@@ -22,18 +27,18 @@ class MyWorkload extends WorkloadModuleBase {
 
       const keys = [ARGUMENTS.assetType, ARGUMENTS.orgName, ...keysDate, data.id];
 
-      console.log(`Worker ${this.workerIndex}: Creating asset ${keys.toString()}`);
-
       const request = {
         contractId: ARGUMENTS.contractId,
         contractFunction: 'createOrUpdateAsset',
-        invokerIdentity: 'User1',
         contractArguments: ['create', ARGUMENTS.assetType, JSON.stringify(keys), JSON.stringify(data)],
         readOnly: false
       };
 
-      await this.sutAdapter.sendRequests(request);
+      sendRequests.push(this.sutAdapter.sendRequests(request));
     }
+
+    await Promise.all(sendRequests);
+    console.log(`Worker ${this.workerIndex}: ${ARGUMENTS.nAsset} asset(s) are created`);
   }
 
   async submitTransaction() {
@@ -43,15 +48,14 @@ class MyWorkload extends WorkloadModuleBase {
 
     const keys = [ARGUMENTS.assetType, ARGUMENTS.orgName, ...keysDate, dataId];
 
-    const myArgs = {
+    const request = {
       contractId: ARGUMENTS.contractId,
-      contractFunction: 'readAsset',
-      invokerIdentity: 'User1',
+      contractFunction: 'deleteAsset',
       contractArguments: [ARGUMENTS.assetType, JSON.stringify(keys)],
       readOnly: true
     };
 
-    await this.sutAdapter.sendRequests(myArgs);
+    await this.sutAdapter.sendRequests(request);
   }
 
   async cleanupWorkloadModule() {
@@ -69,7 +73,6 @@ class MyWorkload extends WorkloadModuleBase {
       const request = {
         contractId: ARGUMENTS.contractId,
         contractFunction: 'deleteAsset',
-        invokerIdentity: 'User1',
         contractArguments: [ARGUMENTS.assetType, JSON.stringify(keys)],
         readOnly: false
       };
