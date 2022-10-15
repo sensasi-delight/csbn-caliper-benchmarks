@@ -10,14 +10,14 @@ channels:
     - id: basic
 
 organizations:
-  - mspid: Supp2MSP
+  - mspid: Supp1MSP
     identities:
       certificates:
       - name: 'User1'
         clientPrivateKey:
-          path: '../csbn-network/organizations/peerOrganizations/supp2.csbn.net/users/User1@supp2.csbn.net/msp/keystore/3193f512f73298c43418bc61a2caa46d5c858ef42da60449bb150595c8f71070_sk'
+          path: '../csbn-network/organizations/peerOrganizations/supp1.csbn.net/users/User1@supp1.csbn.net/msp/keystore/97794a947206644825720c9502cd20192924d08d9c3994a755e85c4a8cac7229_sk'
         clientSignedCert:
-          path: '../csbn-network/organizations/peerOrganizations/supp2.csbn.net/users/User1@supp2.csbn.net/msp/signcerts/cert.pem'
+          path: '../csbn-network/organizations/peerOrganizations/supp1.csbn.net/users/User1@supp1.csbn.net/msp/signcerts/cert.pem'
     connectionProfile:
-      path: '../csbn-network/organizations/peerOrganizations/supp2.csbn.net/connection-profile.yaml'
+      path: '../csbn-network/organizations/peerOrganizations/supp1.csbn.net/connection-profile.yaml'
       discover: true
