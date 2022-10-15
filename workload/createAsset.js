@@ -18,7 +18,7 @@ class MyWorkload extends WorkloadModuleBase {
   }
 
   async submitTransaction() {
-    let data = { ...BATCH_SAMPLE };
+    const data = { ...BATCH_SAMPLE };
 
     data.id = this.workerIndex + '_' + this.currentId++;
     data.date = ARGUMENTS.date;
