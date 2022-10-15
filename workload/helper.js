@@ -1,15 +1,17 @@
+"use strict";
+
 const ARGUMENTS = require('../benchmarks/arguments.json');
 const BATCH_SAMPLE = require('./batchSample.json');
 
 
-export const iwmCreateAssets = async (workloadModule) => {
+const iwmCreateAssets = async (workloadModule) => {
   console.log(`Worker ${workloadModule.workerIndex}: Creating ${ARGUMENTS.nAsset} asset(s)`);
 
   const sendRequests = [];
 
   for (let i = 0; i < ARGUMENTS.nAsset; i++) {
 
-    let data = { ...BATCH_SAMPLE };
+    const data = { ...BATCH_SAMPLE };
     data.id = workloadModule.workerIndex + '_' + i;
     data.date = ARGUMENTS.date;
 
@@ -32,7 +34,7 @@ export const iwmCreateAssets = async (workloadModule) => {
   return Promise.all(sendRequests).then(() => console.log(onSuccessMessage));
 }
 
-export const deleteIwmCreatedAssets = async (workloadModule) => {
+const deleteIwmCreatedAssets = async (workloadModule) => {
   console.log(`Worker ${workloadModule.workerIndex}: Deleting ${ARGUMENTS.nAsset} asset(s)`);
 
   const sendRequests = [];
@@ -57,3 +59,7 @@ export const deleteIwmCreatedAssets = async (workloadModule) => {
   const onSuccessMessage = `Worker ${workloadModule.workerIndex}: ${ARGUMENTS.nAsset} asset(s) are deleted`;
   return Promise.all(sendRequests).then(() => console.log(onSuccessMessage));
 }
+
+
+exports.iwmCreateAssets = iwmCreateAssets;
+exports.deleteIwmCreatedAssets = deleteIwmCreatedAssets;
