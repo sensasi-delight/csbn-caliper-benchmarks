@@ -144,6 +144,7 @@ test:
 
     #
     ###  fixed-rate
+
     - label: createAsset fixed-rate
       description: createAsset benchmark
       txDuration: 30
@@ -201,6 +202,75 @@ test:
         type: fixed-rate
         opts:
           tps: 10
+      workload:
+        module: workload/updateAsset.js
+
+    #
+    ### linear-rate
+
+    - label: createAsset linear-rate
+      description: createAsset smart contract benchmark
+      txDuration: 30
+      rateControl:
+        type: linear-rate
+        opts:
+          startingTps: 25
+          finishingTps: 75
+      workload:
+        module: workload/createAsset.js
+
+    - label: deleteAsset linear-rate
+      description: deleteAsset smart contract benchmark
+      txDuration: 30
+      rateControl:
+        type: linear-rate
+        opts:
+          startingTps: 25
+          finishingTps: 75
+      workload:
+        module: workload/deleteAsset.js
+
+    - label: reach linear-rate
+      description: reach smart contract benchmark
+      txDuration: 30
+      rateControl:
+        type: linear-rate
+        opts:
+          startingTps: 25
+          finishingTps: 75
+      workload:
+        module: workload/reach.js
+
+    - label: readAsset linear-rate
+      description: readAsset smart contract benchmark
+      txDuration: 30
+      rateControl:
+        type: linear-rate
+        opts:
+          startingTps: 25
+          finishingTps: 75
+      workload:
+        module: workload/readAsset.js
+
+    - label: readAssets linear-rate
+      description: readAssets smart contract benchmark
+      txDuration: 30
+      rateControl:
+        type: linear-rate
+        opts:
+          startingTps: 25
+          finishingTps: 75
+      workload:
+        module: workload/readAssets.js
+
+    - label: updateAsset linear-rate
+      description: updateAsset smart contract benchmark
+      txDuration: 30
+      rateControl:
+        type: linear-rate
+        opts:
+          startingTps: 25
+          finishingTps: 75
       workload:
         module: workload/updateAsset.js
 
@@ -282,74 +352,5 @@ test:
           step: 5
           sampleInterval: 20
           includeFailed: true
-      workload:
-        module: workload/updateAsset.js
-
-    #
-    ### linear-rate
-
-    - label: createAsset linear-rate
-      description: createAsset smart contract benchmark
-      txDuration: 30
-      rateControl:
-        type: linear-rate
-        opts:
-          startingTps: 25
-          finishingTps: 75
-      workload:
-        module: workload/createAsset.js
-    
-    - label: deleteAsset linear-rate
-      description: deleteAsset smart contract benchmark
-      txDuration: 30
-      rateControl:
-        type: linear-rate
-        opts:
-          startingTps: 25
-          finishingTps: 75
-      workload:
-        module: workload/deleteAsset.js
-
-    - label: reach linear-rate
-      description: reach smart contract benchmark
-      txDuration: 30
-      rateControl:
-        type: linear-rate
-        opts:
-          startingTps: 25
-          finishingTps: 75
-      workload:
-        module: workload/reach.js
-
-    - label: readAsset linear-rate
-      description: readAsset smart contract benchmark
-      txDuration: 30
-      rateControl:
-        type: linear-rate
-        opts:
-          startingTps: 25
-          finishingTps: 75
-      workload:
-        module: workload/readAsset.js
-
-    - label: readAssets linear-rate
-      description: readAssets smart contract benchmark
-      txDuration: 30
-      rateControl:
-        type: linear-rate
-        opts:
-          startingTps: 25
-          finishingTps: 75
-      workload:
-        module: workload/readAssets.js
-
-    - label: updateAsset linear-rate
-      description: updateAsset smart contract benchmark
-      txDuration: 30
-      rateControl:
-        type: linear-rate
-        opts:
-          startingTps: 25
-          finishingTps: 75
       workload:
         module: workload/updateAsset.js
