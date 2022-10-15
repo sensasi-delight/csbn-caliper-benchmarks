@@ -3,7 +3,7 @@
 const { WorkloadModuleBase } = require('@hyperledger/caliper-core');
 const { iwmCreateAssets, deleteIwmCreatedAssets } = require('./helper');
 
-const ARGUMENTS = require('../benchmarks/arguments.json');
+const ENV = require('../env.json');
 const BATCH_SAMPLE = require('./batchSample.json');
 
 
@@ -19,21 +19,21 @@ class MyWorkload extends WorkloadModuleBase {
 
   async submitTransaction() {
     
-    const keysDate = ARGUMENTS.date.substring(2).split('-');
+    const keysDate = ENV.date.substring(2).split('-');
     
-    const randomId = Math.floor(Math.random() * ARGUMENTS.nAsset);
+    const randomId = Math.floor(Math.random() * ENV.nAsset);
     const dataId = this.workerIndex + '_' + randomId;
     
-    const keys = [ARGUMENTS.assetType, ARGUMENTS.orgName, ...keysDate, dataId];
+    const keys = [ENV.assetType, ENV.orgName, ...keysDate, dataId];
 
     const data = { ...BATCH_SAMPLE };
     data.id = dataId;
-    data.date = ARGUMENTS.date;
+    data.date = ENV.date;
 
     const myArgs = {
-      contractId: ARGUMENTS.contractId,
+      contractId: ENV.contractId,
       contractFunction: 'createOrUpdateAsset',
-      contractArguments: ['update', ARGUMENTS.assetType, JSON.stringify(keys), JSON.stringify(data)],
+      contractArguments: ['update', ENV.assetType, JSON.stringify(keys), JSON.stringify(data)],
       readOnly: false
     };
 

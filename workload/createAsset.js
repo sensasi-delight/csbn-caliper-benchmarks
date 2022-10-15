@@ -2,7 +2,7 @@
 
 const { WorkloadModuleBase } = require('@hyperledger/caliper-core');
 
-const ARGUMENTS = require('../benchmarks/arguments.json');
+const ENV = require('../env.json');
 const BATCH_SAMPLE = require('./batchSample.json');
 
 
@@ -21,16 +21,16 @@ class MyWorkload extends WorkloadModuleBase {
     const data = { ...BATCH_SAMPLE };
 
     data.id = this.workerIndex + '_' + this.currentId++;
-    data.date = ARGUMENTS.date;
+    data.date = ENV.date;
 
     const keysDate = data.date.substring(2).split('-');
 
-    const keys = [ARGUMENTS.assetType, ARGUMENTS.orgName, ...keysDate, data.id];
+    const keys = [ENV.assetType, ENV.orgName, ...keysDate, data.id];
 
     const myArgs = {
-      contractId: ARGUMENTS.contractId,
+      contractId: ENV.contractId,
       contractFunction: 'createOrUpdateAsset',
-      contractArguments: ['create', ARGUMENTS.assetType, JSON.stringify(keys), JSON.stringify(data)],
+      contractArguments: ['create', ENV.assetType, JSON.stringify(keys), JSON.stringify(data)],
       readOnly: false
     };
 
@@ -44,15 +44,15 @@ class MyWorkload extends WorkloadModuleBase {
 
     for (let i = 0; i < this.currentId; i++) {
 
-      const keysDate = ARGUMENTS.date.substring(2).split('-');
+      const keysDate = ENV.date.substring(2).split('-');
       const dataId = this.workerIndex + '_' + i;
 
-      const keys = [ARGUMENTS.assetType, ARGUMENTS.orgName, ...keysDate, dataId];
+      const keys = [ENV.assetType, ENV.orgName, ...keysDate, dataId];
 
       const request = {
-        contractId: ARGUMENTS.contractId,
+        contractId: ENV.contractId,
         contractFunction: 'deleteAsset',
-        contractArguments: [ARGUMENTS.assetType, JSON.stringify(keys)],
+        contractArguments: [ENV.assetType, JSON.stringify(keys)],
         readOnly: false
       };
 

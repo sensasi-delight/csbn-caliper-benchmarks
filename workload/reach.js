@@ -2,7 +2,7 @@
 
 const { WorkloadModuleBase } = require('@hyperledger/caliper-core');
 
-const ARGUMENTS = require('../benchmarks/arguments.json');
+const ENV = require('../env.json');
 
 
 class MyWorkload extends WorkloadModuleBase {
@@ -16,7 +16,7 @@ class MyWorkload extends WorkloadModuleBase {
 
   async submitTransaction() {
     const myArgs = {
-      contractId: ARGUMENTS.contractId,
+      contractId: ENV.contractId,
       contractFunction: 'reach',
       contractArguments: [],
       readOnly: true
