@@ -4,6 +4,39 @@ test:
   workers:
     number: 2
   rounds:
+    ########### createAsset
+    # - label: createAsset fixed-rate
+    #   description: createAsset benchmark
+    #   txDuration: 30
+    #   rateControl:
+    #     type: fixed-rate
+    #     opts:
+    #       tps: 10
+    #   workload:
+    #     module: workload/createAsset.js
+
+    # - label: createAsset fixed-load
+    #   description: createAsset benchmark
+    #   txDuration: 30
+    #   rateControl:
+    #     type: fixed-load
+    #     opts:
+    #       transactionLoad: 5
+    #       startingTps: 100
+    #   workload:
+    #     module: workload/createAsset.js
+
+    ########### deleteAsset
+    - label: deleteAsset fixed-rate
+      description: deleteAsset benchmark
+      txDuration: 30
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/deleteAsset.js
+
     ########### reach
     # - label: reach fixed-rate
     #   description: reach smart contract benchmark
@@ -61,7 +94,6 @@ test:
     #   workload:
     #     module: workload/reach.js
 
-
     ########### readAsset
     # - label: readAsset
     #   description: Read asset benchmark
@@ -73,30 +105,6 @@ test:
     #       startingTps: 100
     #   workload:
     #     module: workload/readAsset.js
-
-
-    ########### createOrUpdateAsset
-    # - label: createOrUpdateAsset fixed-rate
-    #   description: createOrUpdateAsset benchmark
-    #   txDuration: 30
-    #   rateControl:
-    #     type: fixed-rate
-    #     opts:
-    #       tps: 10
-    #   workload:
-    #     module: workload/createOrUpdateAsset.js
-
-    # - label: createOrUpdateAsset fixed-load
-    #   description: createOrUpdateAsset benchmark
-    #   txDuration: 30
-    #   rateControl:
-    #     type: fixed-load
-    #     opts:
-    #       transactionLoad: 5
-    #       startingTps: 100
-    #   workload:
-    #     module: workload/createOrUpdateAsset.js
-
 
     ########### readAssets
     # - label: readAssets fixed-load
@@ -110,15 +118,13 @@ test:
     #   workload:
     #     module: workload/readAssets.js
 
-
-
-    ########### deleteAsset
-    - label: deleteAsset fixed-rate
-      description: deleteAsset benchmark
-      txDuration: 30
-      rateControl:
-        type: fixed-rate
-        opts:
-          tps: 10
-      workload:
-        module: workload/deleteAsset.js
+    ########### updateAsset
+    # - label: updateAsset fixed-rate
+    #   description: updateAsset benchmark
+    #   txDuration: 30
+    #   rateControl:
+    #     type: fixed-rate
+    #     opts:
+    #       tps: 10
+    #   workload:
+    #     module: workload/updateAsset.js

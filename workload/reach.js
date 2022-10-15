@@ -1,7 +1,9 @@
 'use strict';
 
 const { WorkloadModuleBase } = require('@hyperledger/caliper-core');
+
 const ARGUMENTS = require('../benchmarks/arguments.json');
+
 
 class MyWorkload extends WorkloadModuleBase {
   constructor() {
@@ -16,7 +18,6 @@ class MyWorkload extends WorkloadModuleBase {
     const myArgs = {
       contractId: ARGUMENTS.contractId,
       contractFunction: 'reach',
-      invokerIdentity: 'User1',
       contractArguments: [],
       readOnly: true
     };
