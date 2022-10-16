@@ -1,0 +1,15 @@
+test:
+  name: basic-contract-benchmark
+  description: test benchmark
+  workers:
+    number: 2
+  rounds:
+    - label: clean asset
+      description: clean asset
+      txNumber: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/cleanAsset.js
