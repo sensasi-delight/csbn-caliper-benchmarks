@@ -4,6 +4,10 @@ const ENV = require('../env.json');
 const BATCH_SAMPLE = require('./batchSample.json');
 
 const clearLedger = async (workloadModule) => {
+  if (workloadModule.workerIndex != 0) {
+    console.log(`Worker ${workloadModule.workerIndex}: skip deleting asset(s) to avoid crash`);
+  }
+
   if (workloadModule.workerIndex == 0) {
     const myArgs = {
       contractId: ENV.contractId,
@@ -15,6 +19,10 @@ const clearLedger = async (workloadModule) => {
     const result = await workloadModule.sutAdapter.sendRequests(myArgs);
 
     const batches = JSON.parse(result.status.result.toString());
+
+    if (batches.length == 0) {
+      console.log(`Worker ${workloadModule.workerIndex}: skip deleting asset(s), there is no ${ENV.assetType} asset(s) on the ledger`);
+    }
 
     if (batches.length > 0) {
       console.log(`Worker ${workloadModule.workerIndex}: Deleting ${batches.length} asset(s)`);
@@ -37,11 +45,7 @@ const clearLedger = async (workloadModule) => {
 
       const onSuccessMessage = `Worker ${workloadModule.workerIndex}: ${batches.length} asset(s) are deleted`;
       await Promise.all(requests).then(() => console.log(onSuccessMessage));
-    } else {
-      console.log(`Worker ${workloadModule.workerIndex}: skip deleting asset(s), ledger is already empty`);
     }
-  } else {
-    console.log(`Worker ${workloadModule.workerIndex}: skip deleting asset(s) to avoid crash`);
   }
 }
 
