@@ -12,7 +12,7 @@ const clearLedger = async (workloadModule) => {
     const myArgs = {
       contractId: ENV.contractId,
       contractFunction: 'readAssets',
-      contractArguments: [ENV.assetType, JSON.stringify([])],
+      contractArguments: [ENV.assetType, JSON.stringify([ENV.orgName])],
       readOnly: true
     };
 
