@@ -13,11 +13,11 @@ organizations:
   - mspid: Supp2MSP
     identities:
       certificates:
-      - name: 'Admin'
+      - name: 'User1'
         clientPrivateKey:
-          path: '../csbn-network/organizations/peerOrganizations/supp2.csbn.net/users/Admin@supp2.csbn.net/msp/keystore/4c7c81de6c2d802f89dfb2beba52f7fcf8135bbeba1314f4de72bfcbc854f338_sk'
+          path: '../csbn-network/organizations/peerOrganizations/supp2.csbn.net/users/User1@supp2.csbn.net/msp/keystore/3193f512f73298c43418bc61a2caa46d5c858ef42da60449bb150595c8f71070_sk'
         clientSignedCert:
-          path: '../csbn-network/organizations/peerOrganizations/supp2.csbn.net/users/Admin@supp2.csbn.net/msp/signcerts/cert.pem'
+          path: '../csbn-network/organizations/peerOrganizations/supp2.csbn.net/users/User1@supp2.csbn.net/msp/signcerts/cert.pem'
     connectionProfile:
       path: '../csbn-network/organizations/peerOrganizations/supp2.csbn.net/connection-profile.yaml'
       discover: true
