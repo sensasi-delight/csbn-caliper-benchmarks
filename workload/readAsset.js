@@ -1,7 +1,7 @@
 'use strict';
 
 const { WorkloadModuleBase } = require('@hyperledger/caliper-core');
-const { iwmCreateAssets, deleteIwmCreatedAssets } = require('./helper');
+const { iwmCreateAssets, clearLedger } = require('./helper');
 
 const ENV = require('../env.json');
 
@@ -21,7 +21,7 @@ class MyWorkload extends WorkloadModuleBase {
     const randomId = Math.floor(Math.random() * ENV.nAsset);
     const dataId = this.workerIndex + '_' + randomId;
 
-    const keys = [ENV.assetType, ENV.orgName, ...keysDate, dataId];
+    const keys = [ENV.orgName, ...keysDate, dataId];
 
     const myArgs = {
       contractId: ENV.contractId,
@@ -34,7 +34,7 @@ class MyWorkload extends WorkloadModuleBase {
   }
 
   async cleanupWorkloadModule() {
-    await deleteIwmCreatedAssets(this);
+    await clearLedger(this);
   }
 }
 

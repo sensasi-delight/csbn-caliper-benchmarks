@@ -3,8 +3,50 @@
 const ENV = require('../env.json');
 const BATCH_SAMPLE = require('./batchSample.json');
 
+const clearLedger = async (workloadModule) => {
+  if (workloadModule.workerIndex == 0) {
+    const myArgs = {
+      contractId: ENV.contractId,
+      contractFunction: 'readAssets',
+      contractArguments: [ENV.assetType, JSON.stringify([])],
+      readOnly: true
+    };
+
+    const result = await workloadModule.sutAdapter.sendRequests(myArgs);
+
+    const batches = JSON.parse(result.status.result.toString());
+
+    if (batches.length > 0) {
+      console.log(`Worker ${workloadModule.workerIndex}: Deleting ${batches.length} asset(s)`);
+
+      const requests = batches.map(batch => {
+        const keys = batch.Key.split('\x00');
+        keys.shift();
+        const type = keys.shift();
+        keys.pop();
+
+        const request = {
+          contractId: ENV.contractId,
+          contractFunction: 'deleteAsset',
+          contractArguments: [type, JSON.stringify(keys)],
+          readOnly: false
+        };
+
+        return workloadModule.sutAdapter.sendRequests(request);
+      });
+
+      const onSuccessMessage = `Worker ${workloadModule.workerIndex}: ${batches.length} asset(s) are deleted`;
+      await Promise.all(requests).then(() => console.log(onSuccessMessage));
+    } else {
+      console.log(`Worker ${workloadModule.workerIndex}: skip deleting asset(s), ledger is already empty`);
+    }
+  } else {
+    console.log(`Worker ${workloadModule.workerIndex}: skip deleting asset(s) to avoid crash`);
+  }
+}
 
 const iwmCreateAssets = async (workloadModule) => {
+  clearLedger(workloadModule);
   console.log(`Worker ${workloadModule.workerIndex}: Creating ${ENV.nAsset} asset(s)`);
 
   const sendRequests = [];
@@ -17,7 +59,7 @@ const iwmCreateAssets = async (workloadModule) => {
 
     const keysDate = data.date.substring(2).split('-');
 
-    const keys = [ENV.assetType, ENV.orgName, ...keysDate, data.id];
+    const keys = [ENV.orgName, ...keysDate, data.id];
 
     const request = {
       contractId: ENV.contractId,
@@ -34,32 +76,6 @@ const iwmCreateAssets = async (workloadModule) => {
   return Promise.all(sendRequests).then(() => console.log(onSuccessMessage));
 }
 
-const deleteIwmCreatedAssets = async (workloadModule) => {
-  console.log(`Worker ${workloadModule.workerIndex}: Deleting ${ENV.nAsset} asset(s)`);
-
-  const sendRequests = [];
-
-  for (let i = 0; i < ENV.nAsset; i++) {
-
-    const keysDate = ENV.date.substring(2).split('-');
-    const dataId = workloadModule.workerIndex + '_' + i;
-
-    const keys = [ENV.assetType, ENV.orgName, ...keysDate, dataId];
-
-    const request = {
-      contractId: ENV.contractId,
-      contractFunction: 'deleteAsset',
-      contractArguments: [ENV.assetType, JSON.stringify(keys)],
-      readOnly: false
-    };
-
-    sendRequests.push(workloadModule.sutAdapter.sendRequests(request));
-  }
-
-  const onSuccessMessage = `Worker ${workloadModule.workerIndex}: ${ENV.nAsset} asset(s) are deleted`;
-  return Promise.all(sendRequests).then(() => console.log(onSuccessMessage));
-}
-
 
 exports.iwmCreateAssets = iwmCreateAssets;
-exports.deleteIwmCreatedAssets = deleteIwmCreatedAssets;
+exports.clearLedger = clearLedger;
