@@ -1,6 +1,7 @@
 'use strict';
 
 const { WorkloadModuleBase } = require('@hyperledger/caliper-core');
+const { sleep } = require('./helper');
 
 const ENV = require('../env.json');
 
@@ -12,6 +13,8 @@ class MyWorkload extends WorkloadModuleBase {
 
   async initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext) {
     await super.initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext);
+
+    await sleep(10);
   }
 
   async submitTransaction() {
@@ -26,6 +29,7 @@ class MyWorkload extends WorkloadModuleBase {
   }
 
   async cleanupWorkloadModule() {
+    await sleep(10);
   }
 }
 

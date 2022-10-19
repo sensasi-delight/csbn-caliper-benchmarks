@@ -80,6 +80,10 @@ const iwmCreateAssets = async (workloadModule) => {
   return Promise.all(sendRequests).then(() => console.log(onSuccessMessage));
 }
 
+const sleep = second => new Promise(resolve => setTimeout(resolve, second * 1000));
+
+
 
 exports.iwmCreateAssets = iwmCreateAssets;
 exports.clearLedger = clearLedger;
+exports.sleep = sleep;
