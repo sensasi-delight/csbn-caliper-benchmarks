@@ -85,7 +85,7 @@ const sleep = async (second, workloadModule) => {
 
   const sleepPromise = new Promise(resolve => setTimeout(resolve, second * 1000));
 
-  const onSuccessMessage = `Worker ${workloadModule.workerIndex}: i'm am ready to work`;
+  const onSuccessMessage = `Worker ${workloadModule.workerIndex}: I am ready to work`;
   return sleepPromise.then(() => console.log(onSuccessMessage));
 };
 
