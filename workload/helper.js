@@ -80,7 +80,14 @@ const iwmCreateAssets = async (workloadModule) => {
   return Promise.all(sendRequests).then(() => console.log(onSuccessMessage));
 }
 
-const sleep = second => new Promise(resolve => setTimeout(resolve, second * 1000));
+const sleep = async (second) => {
+  console.log(`Worker ${workloadModule.workerIndex}: waiting for ${second} sec(s)`);
+
+  const sleepPromise = new Promise(resolve => setTimeout(resolve, second * 1000));
+
+  const onSuccessMessage = `Worker ${workloadModule.workerIndex}: i'm am ready to work`;
+  return sleepPromise.then(() => console.log(onSuccessMessage));
+};
 
 
 
