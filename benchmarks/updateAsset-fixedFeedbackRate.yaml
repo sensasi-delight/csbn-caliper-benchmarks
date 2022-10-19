@@ -1,0 +1,105 @@
+test:
+  name: updateAsset-fixedFeedbackRate
+  description: Benchmark for updateAsset function with fixed-feedback-rate rate controller
+  workers:
+    number: 2
+  rounds:
+    - label: "Round #1"
+      txDuration: 10
+      rateControl:
+        type: fixed-feedback-rate
+        opts:
+          tps: 10
+          transactionLoad: 100
+      workload:
+        module: workload/updateAsset.js
+
+    - label: "Round #2"
+      txDuration: 10
+      rateControl:
+        type: fixed-feedback-rate
+        opts:
+          tps: 10
+          transactionLoad: 100
+      workload:
+        module: workload/updateAsset.js
+
+    - label: "Round #3"
+      txDuration: 10
+      rateControl:
+        type: fixed-feedback-rate
+        opts:
+          tps: 10
+          transactionLoad: 100
+      workload:
+        module: workload/updateAsset.js
+
+    - label: "Round #4"
+      txDuration: 10
+      rateControl:
+        type: fixed-feedback-rate
+        opts:
+          tps: 10
+          transactionLoad: 100
+      workload:
+        module: workload/updateAsset.js
+
+    - label: "Round #5"
+      txDuration: 10
+      rateControl:
+        type: fixed-feedback-rate
+        opts:
+          tps: 10
+          transactionLoad: 100
+      workload:
+        module: workload/updateAsset.js
+
+    - label: "Round #6"
+      txDuration: 10
+      rateControl:
+        type: fixed-feedback-rate
+        opts:
+          tps: 10
+          transactionLoad: 100
+      workload:
+        module: workload/updateAsset.js
+
+    - label: "Round #7"
+      txDuration: 10
+      rateControl:
+        type: fixed-feedback-rate
+        opts:
+          tps: 10
+          transactionLoad: 100
+      workload:
+        module: workload/updateAsset.js
+
+    - label: "Round #8"
+      txDuration: 10
+      rateControl:
+        type: fixed-feedback-rate
+        opts:
+          tps: 10
+          transactionLoad: 100
+      workload:
+        module: workload/updateAsset.js
+
+    - label: "Round #9"
+      txDuration: 10
+      rateControl:
+        type: fixed-feedback-rate
+        opts:
+          tps: 10
+          transactionLoad: 100
+      workload:
+        module: workload/updateAsset.js
+
+    - label: "Round #10"
+      txDuration: 10
+      rateControl:
+        type: fixed-feedback-rate
+        opts:
+          tps: 10
+          transactionLoad: 100
+      workload:
+        module: workload/updateAsset.js

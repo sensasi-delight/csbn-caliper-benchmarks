@@ -1,0 +1,125 @@
+test:
+  name: readAssets-maximumRate
+  description: Benchmark for readAssets function with maximum-rate rate controller
+  workers:
+    number: 2
+  rounds:
+    - label: "Round #1"
+      txDuration: 10
+      rateControl:
+        type: maximum-rate
+        opts:
+          tps: 10
+          step: 10
+          sampleInterval: 1
+          includeFailed: true
+      workload:
+        module: workload/readAssets.js
+
+    - label: "Round #2"
+      txDuration: 10
+      rateControl:
+        type: maximum-rate
+        opts:
+          tps: 10
+          step: 10
+          sampleInterval: 1
+          includeFailed: true
+      workload:
+        module: workload/readAssets.js
+
+    - label: "Round #3"
+      txDuration: 10
+      rateControl:
+        type: maximum-rate
+        opts:
+          tps: 10
+          step: 10
+          sampleInterval: 1
+          includeFailed: true
+      workload:
+        module: workload/readAssets.js
+
+    - label: "Round #4"
+      txDuration: 10
+      rateControl:
+        type: maximum-rate
+        opts:
+          tps: 10
+          step: 10
+          sampleInterval: 1
+          includeFailed: true
+      workload:
+        module: workload/readAssets.js
+
+    - label: "Round #5"
+      txDuration: 10
+      rateControl:
+        type: maximum-rate
+        opts:
+          tps: 10
+          step: 10
+          sampleInterval: 1
+          includeFailed: true
+      workload:
+        module: workload/readAssets.js
+
+    - label: "Round #6"
+      txDuration: 10
+      rateControl:
+        type: maximum-rate
+        opts:
+          tps: 10
+          step: 10
+          sampleInterval: 1
+          includeFailed: true
+      workload:
+        module: workload/readAssets.js
+
+    - label: "Round #7"
+      txDuration: 10
+      rateControl:
+        type: maximum-rate
+        opts:
+          tps: 10
+          step: 10
+          sampleInterval: 1
+          includeFailed: true
+      workload:
+        module: workload/readAssets.js
+
+    - label: "Round #8"
+      txDuration: 10
+      rateControl:
+        type: maximum-rate
+        opts:
+          tps: 10
+          step: 10
+          sampleInterval: 1
+          includeFailed: true
+      workload:
+        module: workload/readAssets.js
+
+    - label: "Round #9"
+      txDuration: 10
+      rateControl:
+        type: maximum-rate
+        opts:
+          tps: 10
+          step: 10
+          sampleInterval: 1
+          includeFailed: true
+      workload:
+        module: workload/readAssets.js
+
+    - label: "Round #10"
+      txDuration: 10
+      rateControl:
+        type: maximum-rate
+        opts:
+          tps: 10
+          step: 10
+          sampleInterval: 1
+          includeFailed: true
+      workload:
+        module: workload/readAssets.js
