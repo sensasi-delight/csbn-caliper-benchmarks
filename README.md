@@ -40,6 +40,6 @@ npx caliper launch manager \
 --caliper-flow-only-test \
 --caliper-report-precision 4 \
 --caliper-networkconfig networks/user1@supp2.yaml \
---caliper-benchconfig benchmarks/createAsset-FixedRate.yaml \
---caliper-report-path reports/createAsset-FixedRate.html
+--caliper-benchconfig benchmarks/createAsset-fixedRate.yaml \
+--caliper-report-path reports/createAsset-fixedRate.html
 ```
