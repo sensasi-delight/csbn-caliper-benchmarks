@@ -18,7 +18,7 @@ class MyWorkload extends WorkloadModuleBase {
     await super.initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext);
 
     await clearLedger(this);
-    await sleep(10);
+    await sleep(10, this);
   }
 
   async submitTransaction() {
@@ -43,7 +43,7 @@ class MyWorkload extends WorkloadModuleBase {
 
   async cleanupWorkloadModule() {
     await clearLedger(this);
-    await sleep(10);
+    await sleep(10, this);
   }
 }
 
