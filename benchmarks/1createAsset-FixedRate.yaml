@@ -1,0 +1,105 @@
+test:
+  name: basic-contract-benchmark
+  description: test benchmark
+  workers:
+    number: 2
+  rounds:
+    - label: createAsset fixed-rate
+      description: createAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/createAsset.js
+    
+    - label: createAsset fixed-rate
+      description: createAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/createAsset.js
+
+    - label: createAsset fixed-rate
+      description: createAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/createAsset.js
+    
+    - label: createAsset fixed-rate
+      description: createAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/createAsset.js
+    
+    - label: createAsset fixed-rate
+      description: createAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/createAsset.js
+    
+    - label: createAsset fixed-rate
+      description: createAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/createAsset.js
+
+    - label: createAsset fixed-rate
+      description: createAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/createAsset.js
+
+    - label: createAsset fixed-rate
+      description: createAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/createAsset.js
+
+    - label: createAsset fixed-rate
+      description: createAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/createAsset.js
+
+    - label: createAsset fixed-rate
+      description: createAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/createAsset.js

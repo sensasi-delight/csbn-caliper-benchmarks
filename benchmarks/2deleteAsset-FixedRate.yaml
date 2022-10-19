@@ -1,0 +1,105 @@
+test:
+  name: basic-contract-benchmark
+  description: 'function: deleteAsset; rate-control: fixed-rate' 
+  workers:
+    number: 2
+  rounds:
+    - label: deleteAsset fixed-rate
+      description: deleteAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/deleteAsset.js
+    
+    - label: deleteAsset fixed-rate
+      description: deleteAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/deleteAsset.js
+
+    - label: deleteAsset fixed-rate
+      description: deleteAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/deleteAsset.js
+    
+    - label: deleteAsset fixed-rate
+      description: deleteAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/deleteAsset.js
+    
+    - label: deleteAsset fixed-rate
+      description: deleteAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/deleteAsset.js
+    
+    - label: deleteAsset fixed-rate
+      description: deleteAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/deleteAsset.js
+
+    - label: deleteAsset fixed-rate
+      description: deleteAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/deleteAsset.js
+
+    - label: deleteAsset fixed-rate
+      description: deleteAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/deleteAsset.js
+
+    - label: deleteAsset fixed-rate
+      description: deleteAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/deleteAsset.js
+
+    - label: deleteAsset fixed-rate
+      description: deleteAsset benchmark
+      txDuration: 10
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: workload/deleteAsset.js
