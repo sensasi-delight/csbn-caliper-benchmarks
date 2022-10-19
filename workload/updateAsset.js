@@ -22,9 +22,9 @@ class MyWorkload extends WorkloadModuleBase {
     const keysDate = ENV.date.substring(2).split('-');
     
     const randomId = Math.floor(Math.random() * ENV.nAsset);
-    const dataId = this.workerIndex + '_' + randomId;
     
-    const keys = [ENV.orgName, ...keysDate, dataId];
+    
+    const keys = [ENV.orgName, ...keysDate, this.workerIndex, randomId];
 
     const data = { ...BATCH_SAMPLE };
     data.id = dataId;
