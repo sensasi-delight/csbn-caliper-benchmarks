@@ -1,6 +1,6 @@
 test:
   name: createAsset-fixedRate
-  description: Benchmark for createAsset function with fixed-rate rete controller
+  description: Benchmark for createAsset function with fixed-rate rate controller
   workers:
     number: 2
   rounds:
