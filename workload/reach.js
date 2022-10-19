@@ -14,7 +14,7 @@ class MyWorkload extends WorkloadModuleBase {
   async initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext) {
     await super.initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext);
 
-    await sleep(10);
+    await sleep(30);
   }
 
   async submitTransaction() {
@@ -29,7 +29,7 @@ class MyWorkload extends WorkloadModuleBase {
   }
 
   async cleanupWorkloadModule() {
-    await sleep(10);
+    await sleep(30);
   }
 }
 
