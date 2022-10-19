@@ -18,17 +18,18 @@ class MyWorkload extends WorkloadModuleBase {
     await super.initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext);
 
     await clearLedger(this);
+    await sleep(10);
   }
 
   async submitTransaction() {
     const data = { ...BATCH_SAMPLE };
 
-    data.id = this.workerIndex + '_' + this.currentId++;
+    data.id = this.workerIndex + '_' + this.currentId;
     data.date = ENV.date;
 
     const keysDate = data.date.substring(2).split('-');
 
-    const keys = [ENV.orgName, ...keysDate, this.workerIndex, data.id];
+    const keys = [ENV.orgName, ...keysDate, this.workerIndex, this.currentId++];
 
     const myArgs = {
       contractId: ENV.contractId,
@@ -42,6 +43,7 @@ class MyWorkload extends WorkloadModuleBase {
 
   async cleanupWorkloadModule() {
     await clearLedger(this);
+    await sleep(10);
   }
 }
 
