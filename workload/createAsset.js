@@ -1,7 +1,7 @@
 'use strict';
 
 const { WorkloadModuleBase } = require('@hyperledger/caliper-core');
-const { clearLedger } = require('./helper');
+const { clearLedger, sleep } = require('./helper');
 
 const ENV = require('../env.json');
 const BATCH_SAMPLE = require('./batchSample.json');
