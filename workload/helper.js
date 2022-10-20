@@ -44,7 +44,7 @@ const clearLedger = async (workloadModule) => {
       });
 
       const onSuccessMessage = `Worker ${workloadModule.workerIndex}: ${batches.length} asset(s) are deleted`;
-      await Promise.all(requests).then(() => console.log(onSuccessMessage));
+      return Promise.all(requests).then(() => console.log(onSuccessMessage));
     }
   }
 }
@@ -111,7 +111,7 @@ const cwmDeleteAssets = async (workloadModule) => {
   }
 
   const onSuccessMessage = `Worker ${workloadModule.workerIndex}: ${ENV.nAsset} asset(s) are deleted`;
-  await Promise.all(requests).then(() => console.log(onSuccessMessage));
+  return Promise.all(requests).then(() => console.log(onSuccessMessage));
 }
 
 
