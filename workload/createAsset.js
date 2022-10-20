@@ -31,15 +31,16 @@ class MyWorkload extends WorkloadModuleBase {
 
     const keys = [ENV.orgName, this.workerIndex.toString(), ...keysDate, this.currentId.toString()]
 
+    this.currentId++;
+
     const myArgs = {
       contractId: ENV.contractId,
       contractFunction: 'createOrUpdateAsset',
       contractArguments: ['create', ENV.assetType, JSON.stringify(keys), JSON.stringify(data)],
       readOnly: false
     };
-
+    
     await this.sutAdapter.sendRequests(myArgs);
-    this.currentId++;
   }
 
   async cleanupWorkloadModule() {
