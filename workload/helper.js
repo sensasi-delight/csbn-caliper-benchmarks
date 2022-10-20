@@ -85,4 +85,3 @@ const sleep = async (second, workloadModule) => {
 exports.iwmCreateAssets = iwmCreateAssets;
 exports.clearLedger = clearLedger;
 exports.sleep = sleep;
-exports.cwmDeleteAssets = cwmDeleteAssets;
