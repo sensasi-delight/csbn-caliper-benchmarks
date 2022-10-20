@@ -29,7 +29,7 @@ class MyWorkload extends WorkloadModuleBase {
 
     const keysDate = data.date.substring(2).split('-');
 
-    const keys = [ENV.orgName, ...keysDate, this.workerIndex.toString(), this.currentId.toString()]
+    const keys = [ENV.orgName, this.workerIndex.toString(), ...keysDate, this.currentId.toString()]
 
     const myArgs = {
       contractId: ENV.contractId,
