@@ -29,7 +29,7 @@ class MyWorkload extends WorkloadModuleBase {
       contractId: ENV.contractId,
       contractFunction: 'deleteAsset',
       contractArguments: [ENV.assetType, JSON.stringify(keys)],
-      readOnly: true
+      readOnly: false
     };
 
     await this.sutAdapter.sendRequests(request);
