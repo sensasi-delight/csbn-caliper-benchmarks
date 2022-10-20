@@ -50,7 +50,6 @@ const clearLedger = async (workloadModule) => {
 }
 
 const iwmCreateAssets = async (workloadModule) => {
-  clearLedger(workloadModule);
   console.log(`Worker ${workloadModule.workerIndex}: Creating ${ENV.nAsset} asset(s)`);
 
   const sendRequests = [];
@@ -91,6 +90,33 @@ const sleep = async (second, workloadModule) => {
 
 
 
+const cwmDeleteAssets = async (workloadModule) => {
+  console.log(`Worker ${workloadModule.workerIndex}: Deleting ${ENV.nAsset} asset(s)`);
+
+  const requests = [];
+
+  for (let i = 0; i < ENV.nAsset; i++) {
+    const keysDate = data.date.substring(2).split('-');
+
+    const keys = [ENV.orgName, ...keysDate, workloadModule.workerIndex.toString(), i.toString()];
+
+    const request = {
+      contractId: ENV.contractId,
+      contractFunction: 'deleteAsset',
+      contractArguments: [type, JSON.stringify(keys)],
+      readOnly: false
+    };
+
+    requests.push(workloadModule.sutAdapter.sendRequests(request))
+  }
+
+  const onSuccessMessage = `Worker ${workloadModule.workerIndex}: ${ENV.nAsset} asset(s) are deleted`;
+  await Promise.all(requests).then(() => console.log(onSuccessMessage));
+}
+
+
+
 exports.iwmCreateAssets = iwmCreateAssets;
 exports.clearLedger = clearLedger;
 exports.sleep = sleep;
+exports.cwmDeleteAssets = cwmDeleteAssets;

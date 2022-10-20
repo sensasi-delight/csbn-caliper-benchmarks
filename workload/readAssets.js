@@ -1,7 +1,7 @@
 'use strict';
 
 const { WorkloadModuleBase } = require('@hyperledger/caliper-core');
-const { iwmCreateAssets, clearLedger, sleep } = require('./helper');
+const { iwmCreateAssets, clearLedger, sleep, cwmDeleteAssets } = require('./helper');
 
 const ENV = require('../env.json');
 
@@ -13,6 +13,8 @@ class MyWorkload extends WorkloadModuleBase {
 
   async initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext) {
     await super.initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext);
+
+    await clearLedger(this);
     await iwmCreateAssets(this);
     await sleep(10, this);
   }
@@ -33,7 +35,7 @@ class MyWorkload extends WorkloadModuleBase {
   }
 
   async cleanupWorkloadModule() {
-    await clearLedger(this);
+    await cwmDeleteAssets(this);
     await sleep(10, this);
   }
 }
