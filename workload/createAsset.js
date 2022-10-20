@@ -29,7 +29,7 @@ class MyWorkload extends WorkloadModuleBase {
 
     const keysDate = data.date.substring(2).split('-');
 
-    const keys = [ENV.orgName, ...keysDate, this.workerIndex, this.currentId++];
+    const keys = [ENV.orgName, ...keysDate, this.workerIndex.toString(), this.currentId.toString()]
 
     const myArgs = {
       contractId: ENV.contractId,
@@ -39,6 +39,7 @@ class MyWorkload extends WorkloadModuleBase {
     };
 
     await this.sutAdapter.sendRequests(myArgs);
+    this.currentId++;
   }
 
   async cleanupWorkloadModule() {

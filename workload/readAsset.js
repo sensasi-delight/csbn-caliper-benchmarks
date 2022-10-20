@@ -22,7 +22,7 @@ class MyWorkload extends WorkloadModuleBase {
     const randomId = Math.floor(Math.random() * ENV.nAsset);
     
 
-    const keys = [ENV.orgName, ...keysDate, this.workerIndex, randomId];
+    const keys = [ENV.orgName, ...keysDate, this.workerIndex.toString(), randomId.toString()];
 
     const myArgs = {
       contractId: ENV.contractId,

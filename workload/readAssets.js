@@ -19,7 +19,7 @@ class MyWorkload extends WorkloadModuleBase {
 
   async submitTransaction() {
     const monthYearKeys = ENV.date.substring(2).slice(0, -3).split('-');
-    const keys = [ENV.orgName, ...monthYearKeys, this.workerIndex];
+    const keys = [ENV.orgName, ...monthYearKeys, this.workerIndex.toString()];
     const keysJsonString = JSON.stringify(keys);
 
     const myArgs = {

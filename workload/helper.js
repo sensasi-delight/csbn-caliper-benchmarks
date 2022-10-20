@@ -63,7 +63,7 @@ const iwmCreateAssets = async (workloadModule) => {
 
     const keysDate = data.date.substring(2).split('-');
 
-    const keys = [ENV.orgName, ...keysDate, workloadModule.workerIndex, i];
+    const keys = [ENV.orgName, ...keysDate, workloadModule.workerIndex.toString(), i.toString()];
 
     const request = {
       contractId: ENV.contractId,
