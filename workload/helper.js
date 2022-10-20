@@ -96,7 +96,7 @@ const cwmDeleteAssets = async (workloadModule) => {
   const requests = [];
 
   for (let i = 0; i < ENV.nAsset; i++) {
-    const keysDate = data.date.substring(2).split('-');
+    const keysDate = ENV.date.substring(2).split('-');
 
     const keys = [ENV.orgName, ...keysDate, workloadModule.workerIndex.toString(), i.toString()];
 
