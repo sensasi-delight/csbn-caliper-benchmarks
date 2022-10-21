@@ -10,6 +10,8 @@ const BATCH_SAMPLE = require('./batchSample.json');
 class MyWorkload extends WorkloadModuleBase {
   constructor() {
     super();
+
+    this.currentId = 0;
   }
 
   async initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext) {
@@ -21,17 +23,20 @@ class MyWorkload extends WorkloadModuleBase {
   }
 
   async submitTransaction() {
-    
     const keysDate = ENV.date.substring(2).split('-');
     
-    const randomId = Math.floor(Math.random() * ENV.nAsset);
+    const keys = [ENV.orgName, this.workerIndex.toString(), ...keysDate, this.currentId.toString()];
     
-    const keys = [ENV.orgName, this.workerIndex.toString(), ...keysDate, randomId.toString()];
-
     const data = { ...BATCH_SAMPLE };
-    data.id = randomId;
+    data.id = this.currentId;
     data.date = ENV.date;
 
+    this.currentId++
+
+    if (this.currentId > ENV.nAsset) {
+      this.currentId = 0
+    }
+    
     const myArgs = {
       contractId: ENV.contractId,
       contractFunction: 'createOrUpdateAsset',
