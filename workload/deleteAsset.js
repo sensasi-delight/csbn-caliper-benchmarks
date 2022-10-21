@@ -9,6 +9,8 @@ const ENV = require('../env.json');
 class MyWorkload extends WorkloadModuleBase {
   constructor() {
     super();
+
+    this.currentId = 0;
   }
 
   async initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext) {
@@ -19,11 +21,11 @@ class MyWorkload extends WorkloadModuleBase {
     await sleep(10, this);
   }
 
-  async submitTransaction() {
+  async submitTransaction() {    
     const keysDate = ENV.date.substring(2).split('-');
-    const randomId = Math.floor(Math.random() * ENV.nAsset);
-    
-    const keys = [ENV.orgName, this.workerIndex.toString(), ...keysDate, randomId.toString()];
+    const keys = [ENV.orgName, this.workerIndex.toString(), ...keysDate, this.currentId.toString()];
+
+    this.currentId++
 
     const request = {
       contractId: ENV.contractId,
